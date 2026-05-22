@@ -7,8 +7,8 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  name: Default
 
 steps:
-- script: echo "CI Pipeline Running Successfully"
+- script: echo "CI Pipeline Running Using Self Hosted Agent"
   displayName: 'Run Pipeline'
