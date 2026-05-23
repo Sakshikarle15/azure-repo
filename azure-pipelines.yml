@@ -7,8 +7,9 @@ trigger:
 - main
 
 pool:
-  name: Default
+  name: SelfHostedAgent
 
 steps:
-- script: echo "CI Pipeline Running Using Self Hosted Agent"
-  displayName: 'Run Pipeline'
+- script: npm install
+- script: npm run build
+
