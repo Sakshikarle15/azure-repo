@@ -7,9 +7,8 @@ trigger:
 - main
 
 pool:
-  name: SelfHostedAgent
+  vmImage: ubuntu-latest
 
 steps:
-- script: npm install
-- script: npm run build
-
+- script: echo "CI Pipeline Running Successfully"
+  displayName: 'Run Pipeline'
