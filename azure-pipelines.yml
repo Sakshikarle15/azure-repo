@@ -4,38 +4,17 @@
 # https://aka.ms/yaml
 
 trigger:
-- main
-
-pool:
-  vmImage: ubuntu-latest
-
-steps:
-
-- task: NodeTool@0
-  inputs:
-    versionSpec: '18.x'
-
-- script: |
-    npm install
-    npm run build
-  displayName: 'Build Application'
-
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
-    includeRootFolder: false
-    archiveType: zip
-    archiveFile: '$(Build.ArtifactStagingDirectory)/app.zip'
-    replaceExistingArchive: true
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)/app.zip'
-    ArtifactName: 'drop'
-
-- task: AzureWebApp@1
-  inputs:
-    azureSubscription: 'Azure-Service-Connection'
-    appType: 'webAppLinux'
-    appName: 'your-webapp-name'
-    package: '$(Build.ArtifactStagingDirectory)/app.zip'
+  branches:
+    include:
+    - main
+stages:
+- stage: __default
+  jobs:
+  - job: Job
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - task: CmdLine@2
+      displayName: 'Run Pipeline'
+      inputs:
+        script: echo "CI Pipeline Running Successfully"
